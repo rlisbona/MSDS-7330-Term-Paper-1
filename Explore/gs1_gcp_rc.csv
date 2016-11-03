@@ -1,0 +1,17 @@
+RETURN_CODE,RETURN_NAME,ORIGIN
+0,"No error",GS1
+1,"Missing or invalid parameters",GS1
+2,"No record found",GS1
+3,"No exact match on GLN",GS1
+4,"Too many hits, max. 20 entries are displayed",GS1
+5,"Unknown country code",GS1
+7,"Request timed out",GS1
+8,"No catalogue exists",GS1
+9,"Company information withheld",GS1
+10,"Prefix no longer subscribed",GS1
+11,"Country not on the GEPIR network",GS1
+13,"Illegal Number",GS1
+14,"Daily request limit exceeded",GS1
+99,"Server error",GS1
+100,"Return code 0, no GLN, GLN name = Spain",POD
+101,"Return code 0 but GCP assigned to GS1",POD

@@ -1,0 +1,43 @@
+pkg_type_cd,pkg_type_nm,pkg_type_desc
+1,"Bouteille Plastique - PET","Polyéthylène téréphtalate (PETE ou PET)"
+2,"Bouteille Plastique - HDPE","Polytéthylène haute densité (HDPE ou PEHD)"
+3,"Bouteille Plastique - PVC","Polychlorure de vinyle (PVC ou V)"
+4,"Bouteille Plastique - LDPE","Polyéthylène faible densité (LDPE ou PEBD)"
+5,"Bouteille Plastique - PP",Polypropylène
+6,"Bouteille Plastique - PS","Polystyrène expansé"
+7,"Bouteille Plastique - Autre","Autres plastiques que ceux nommés de 1 à 6"
+8,"Bouteille Plastique - Inconnu","Plastique non connu"
+9,"Bouteille en verre",
+10,"Boîte métallique - Canette",
+11,"Boîte mettalique - Autre",
+12,"Bidon métal ",
+13,"Pot en verre",
+14,DoyPack,
+15,Outre,
+16,"Boîte carton",
+17,Seau,
+18,tube,
+19,"tube + étui carton",
+20,Barquette,
+21,"Bidon Plastique - PET","Polyéthylène téréphtalate (PETE ou PET)"
+22,"Bidon Plastique - HDPE","Polytéthylène haute densité (HDPE ou PEHD)"
+23,"Bidon Plastique - PVC","Polychlorure de vinyle (PVC ou V)"
+24,"Bidon Plastique - LDPE","Polyéthylène faible densité (LDPE ou PEBD)"
+25,"Bidon Plastique - PP",Polypropylène
+26,"Bidon Plastique - PS","Polystyrène expansé"
+27,"Bidon Plastique - Autre","Autres plastiques que ceux nommés de 1 à 6"
+28,"Bidon Plastique - Inconnu","Plastique non connu"
+31,"Pot Plastique - PET","Polyéthylène téréphtalate (PETE ou PET)"
+32,"Pot Plastique - HDPE","Polytéthylène haute densité (HDPE ou PEHD)"
+33,"Pot Plastique - PVC","Polychlorure de vinyle (PVC ou V)"
+34,"Pot Plastique - LDPE","Polyéthylène faible densité (LDPE ou PEBD)"
+35,"Pot Plastique - PP",Polypropylène
+36,"Pot Plastique - PS","Polystyrène expansé"
+37,"Pot Plastique - Autre","Autres plastiques que ceux nommés de 1 à 6"
+38,"Pot Plastique - Inconnu","Plastique non connu"
+40,gourdes,
+41,vaporisateur,
+42,"sachet cellophane ",
+43,"sachet plastique ",
+44,"sac ",
+45,"Flacon ",
