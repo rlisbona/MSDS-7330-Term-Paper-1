@@ -66,6 +66,28 @@ SELECT * FROM gtin_13.pkg_type;
 
 /* check how many package types there are */
 select distinct(pkg_type_cd) from gtin;
+select distinct(GCP_CD) from gtin;  /* 52918 distinct rows returned for Company code */
+
+select count(*) as Freq, A.GCP_CD, A.BSIN, B.BRAND_NM from gtin_13.gtin A join gtin_13.brand B on a.BSIN = B.BSIN GROUP BY A.GCP_CD, A.BSIN, B.BRAND_NM ;  /* 52918 distinct rows returned for Company code */
+
+select A.GTIN_CD, A.GCP_CD, A.BSIN, B.BRAND_NM 
+from gtin_13.gtin A left join gtin_13.brand B on a.BSIN = B.BSIN 
+GROUP BY A.GCP_CD, A.BSIN, B.BRAND_NM
+order by A.GTIN_CD ;  /* 52918 distinct rows returned for Company code */
+ 
+
+
+
+
+select distinct(length(GTIN_CD)) from gtin;  /* check this syntax */
+select  GTIN_CD, length(GTIN_CD) as GTIN_LEN, GCP_CD, length(GCP_CD) as GCP_LEN from gtin order by length(GTIN_CD);  
+
+select A.GPC_NM, B.GTIN_CD, B.GPC_S_CD, B.GPC_C_CD, B.GPC_C_CD, B.PRODUCT_LINE from 
+     gtin_13.gs1_gpc 			A 									/* 1,673,000 rows returned -Product names in various languages			*/
+join gtin_13.gtin 				B on B.GPC_B_CD 		= A.GPC_CD ; /*and A.GPC_LANG = "EN";*/
+
+select M_G, M_OZ, count(*) from gtin_13.gtin
+group by M_G, M_OZ;  
 
 drop view if exists gtin_subset;
 create view gtin_subset as
