@@ -1,8 +1,20 @@
-
 /* Explore GTIN_13 tables - Randy Lisbona 10/29/2016 */
-/* Summarize record counts in all tables */
-select * from information_schema.tables where information_schema.tables.table_schema = 'gtin_13';
-flush tables;
+
+/* Database storage calculation using example from www.a2hosting.com*/
+/* https://www.a2hosting.com/kb/developer-corner/mysql/determining-the-size-of-mysql-databases-and-tables */
+SELECT table_schema AS "Database", 
+ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size in (MB)" 
+FROM information_schema.TABLES 
+WHERE table_schema = "gtin_13";
+
+SHOW VARIABLES LIKE "%version%";
+select version();
+
+/* count columns per table */
+SELECT table_name, COUNT(*) totalColumns
+FROM   INFORMATION_SCHEMA.COLUMNS
+WHERE table_schema = "gtin_13"
+group by table_name;
 
 /* this is giving a slightly different record count for some tables, not sure why, use individual queries instead
 select TABLE_NAME, TABLE_ROWS from information_schema.tables where information_schema.tables.table_schema = 'gtin_13';
@@ -76,12 +88,8 @@ where OWNER_CD between 27 and 30
 order by OWNER_CD, BSIN;
 
 SELECT * FROM gtin_13.brand_type;
-
 SELECT * FROM gtin_13.pkg_type;
-
-
 select distinct(pkg_type_cd) from gtin;  /* Check how many package types there are: 23 rows returned */
-
 select distinct(GCP_CD) from gtin;  /* 52918 distinct rows returned for Company code */
 
 /* 15,502 distinct brand single identification number (BSIN) matched in gtin */
@@ -132,8 +140,6 @@ join gtin_13.brand_owner 		F on E.OWNER_CD 	= F.OWNER_CD	/*    86,500 rows match
 join gtin_13.nutrition_us 		C on B.GTIN_CD 		= C.GTIN_CD		/*        52 rows matched     231 Nutrition information of item	    */
 join gtin_13.pkg_type 			G on B.PKG_TYPE_CD  = G.pkg_type_cd  /*        0 rows matched      42 Package description of item       */
 
-
-
 /* extract example rows from each table */
 
 SELECT * FROM gtin_13.gs1_gcp_nb
@@ -152,19 +158,15 @@ SELECT * FROM gtin_13.gs1_prefix
 where COUNTRY_ISO_CD ='US'
 limit 10;
 
-
 SELECT A.* FROM gtin_13.nutrition_us A join gtin_subset B on
 A.GTIN_CD = B.GTIN_CD
 limit 200;
-
 
 SELECT A.* FROM gtin_13.nutrition_us A join gtin B on
 A.GTIN_CD = B.GTIN_CD
 limit 20;
 
-
 SELECT * FROM gtin_13.label_gtin;
-
 SELECT * FROM gtin_13.label;
 
 SELECT A.* FROM gtin_13.brand as A join brand_owner_bsin_subset as B on
@@ -172,7 +174,6 @@ A.BSIN = B.BSIN
 order by  A.BSIN;
 
 SELECT * FROM gtin_13.brand_group;
-
 SELECT * FROM gtin_13.brand_owner;
 
 select Count(*) from gtin_13.gtin where BSIN is null;
