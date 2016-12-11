@@ -1,0 +1,108 @@
+freq,pct_of_total,Prefix_NM,Country_ISO_CD
+603820,0.6545,"GS1 US",US
+135472,0.1468,"GS1 France",FR
+31002,0.0336,"GS1 Brasil  ",BR
+28924,0.0314,"GS1 Germany",DE
+17776,0.0193,"GS1 Poland",PL
+13652,0.0148,"GS1 UK",GB
+13587,0.0147,"GS1 Italy  ",IT
+11196,0.0121,"GS1 Spain  ",ES
+7867,0.0085,"GS1 Netherlands",NL
+5975,0.0065,"GS1 Japan",JP
+5342,0.0058,"GS1 Schweiz, Suisse, Svizzera",CH
+5099,0.0055,"GS1 Belgium & Luxembourg",BE
+3738,0.0041,"GS1 Australia",AU
+3022,0.0033,"GS1 Malaysia",MY
+2439,0.0026,"GS1 Taiwan",TW
+2110,0.0023,"GS1 China",CN
+1969,0.0021,"GS1 Hong Kong",HK
+1883,0.0020,"GS1 Czech",CZ
+1671,0.0018,"GS1 Syria",SY
+1562,0.0017,"GS1 Slovenija",SI
+1531,0.0017,"GS1 Austria",AT
+1490,0.0016,"GS1 Sweden",SE
+1428,0.0015,"GS1 Denmark",DK
+1305,0.0014,"GS1 South Korea",KR
+1266,0.0014,"GS1 Thailand",TH
+1196,0.0013,"GS1 Saudi Arabia",SA
+1119,0.0012,"GS1 Emirates",AE
+1088,0.0012,"GS1 Malta",MT
+1048,0.0011,"GS1 Turkey",TR
+798,0.0009,"GS1 Association Greece",GR
+785,0.0009,"GS1 Lithuania",LT
+774,0.0008,"GS1 Portugal",PT
+755,0.0008,"GS1 Hungary",HU
+725,0.0008,"GS1 Russia",RU
+644,0.0007,"GS1 New Zealand",NZ
+592,0.0006,"GS1 Finland",FI
+576,0.0006,"GS1 Lebanon",LB
+507,0.0005,"GS1 Argentina",AR
+489,0.0005,"GS1 Singapore",SG
+467,0.0005,"GS1 Colombia",CO
+451,0.0005,"GS1 Mexico",MX
+416,0.0005,"GS1 Israel",IL
+402,0.0004,"GS1 South Africa",ZA
+383,0.0004,"GS1 India",IN
+378,0.0004,"GS1 Chile",CL
+328,0.0004,"GS1 Vietnam",VN
+300,0.0003,"GS1 Philippines",PH
+296,0.0003,"Bookland (ISBN)",WW
+265,0.0003,"GS1 Slovakia",SK
+252,0.0003,"GS1 Egypt",EG
+226,0.0002,"GS1 Bulgaria",BG
+220,0.0002,"GS1 Indonesia",ID
+219,0.0002,"GS1 Estonia",EE
+144,0.0002,"GS1 Sri Lanka",LK
+123,0.0001,"GS1 Tunisia",TN
+122,0.0001,"GS1 Croatia",HR
+115,0.0001,"GS1 Morocco",MA
+104,0.0001,"GS1 Cyprus",CY
+101,0.0001,"GS1 Norway",NO
+95,0.0001,"GS1 Jordan",JO
+90,0.0001,"GS1 Latvia",LV
+87,0.0001,"GS1 Ireland",IE
+86,0.0001,"GS1 Macau",MO
+76,0.0001,"GS1 Romania",RO
+71,0.0001,"GS1 Kuwait",KW
+68,0.0001,"GS1 Venezuela",VE
+62,0.0001,"GS1 Belarus",BY
+61,0.0001,"GS1 Ukraine",UA
+42,0.0000,"GS1 MAC (FYR Macedonia)",MK
+37,0.0000,"GS1 Georgia",GE
+28,0.0000,"GS1 Peru",PE
+28,0.0000,"GS1 Moldova",MD
+28,0.0000,"GS1 Algeria",DZ
+28,0.0000,"GS1 Iran",IR
+22,0.0000," GS1 Serbia",RS
+16,0.0000,"GS1 Costa Rica",CR
+15,0.0000,"GS1 Cuba",CU
+13,0.0000,"GS1 Mauritius",MR
+12,0.0000,"GS1 Ecuador",EC
+11,0.0000,"Serial publications (ISSN)",WW
+7,0.0000,"GS1 Republica Dominicana",DO
+7,0.0000,"GS1 Canada",CA
+7,0.0000,"GS1 Uruguay",UY
+6,0.0000,"GS1 Iceland",IS
+6,0.0000,"GS1 US - Not used",US
+6,0.0000,"GS1 BIH (Bosnia-Herzegovina)",BA
+5,0.0000,"GS1 Panama",PA
+5,0.0000,"GS1 Armenia",AM
+4,0.0000,"GS1 Guatemala",GT
+4,0.0000,"GS1 Azerbaijan",AZ
+4,0.0000,"GS1 Paraguay",PY
+4,0.0000,"GS1 Senegal",SN
+3,0.0000,"GS1 Brunei",BN
+3,0.0000,"GS1 Cambodia",KH
+3,0.0000,"GS1 Ivory Coast",CI
+2,0.0000,"Reserved for future use  ",
+2,0.0000,"GS1 Ghana",GH
+2,0.0000,"GS1 El Salvador",SV
+1,0.0000,"GS1 Kyrgyzstan",KG
+1,0.0000,"GS1 Pakistan",PK
+1,0.0000,"GS1 Uzbekistan",UZ
+1,0.0000,"GS1 Honduras",HN
+1,0.0000,"GS1 Montenegro",ME
+1,0.0000,"GS1 Bolivia",BO
+1,0.0000,"GS1 Bahrain",BH
+1,0.0000,"GS1 Libya",LY
+1,0.0000,"GS1 Kenya",KE

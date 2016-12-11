@@ -1,4 +1,4 @@
-/* Explore GTIN_13 tables - Randy Lisbona 10/29/2016 */
+/* Explore GTIN_13 tables - Randy Lisbona 10/29/2016-12/10/2016 */
 
 /* Database storage calculation using example from www.a2hosting.com*/
 /* https://www.a2hosting.com/kb/developer-corner/mysql/determining-the-size-of-mysql-databases-and-tables */
@@ -65,6 +65,7 @@ pkg_type		pkg_type_cd
 */
 
 /* select record counts from all tables */
+/* 1.7 seconds to run */
 select 'brand' as 'TABLE_NAME', count(*) as 'TABLE_ROWS' from gtin_13.brand union
 select 'brand_owner' as 'TABLE_NAME', count(*) as 'TABLE_ROWS' from gtin_13.brand_owner union
 select 'brand_owner_bsin' as 'TABLE_NAME', count(*) as 'TABLE_ROWS' from gtin_13.brand_owner_bsin union
@@ -130,15 +131,19 @@ where A.GCP_CD REGEXP '.73410.';
 
 /***********************   The deeper we go (linking more tables) the fewer matching records we find  **************************************/
 /*                         Recommend using primarily the gtin table and brand table, gts_gcp doesn't have much useful information **********/
-
-select A.* from 
+/* 4 seconds to run, thought it was longer than that */
+select B.GTIN_CD, H.* from 
      gtin_13.gs1_gcp 			A 									/* 1,673,000 rows                 Global Company Prefixes			*/
 join gtin_13.gtin 				B on A.GCP_CD 		= B.GCP_CD  	/*   918,000 rows matched 923,000 GTIN product item codes			*/
 join gtin_13.brand 				D on B.BSIN 		= D.BSIN  		/*   527,000 rows matched   4,100 Brand names						*/
 join gtin_13.brand_owner_bsin 	E on D.BSIN 		= E.BSIN		/*    86,500 rows matched     581 Brand owner code of Brand		    */
 join gtin_13.brand_owner 		F on E.OWNER_CD 	= F.OWNER_CD	/*    86,500 rows matched      32 Brand owner name of owner code	*/
 join gtin_13.nutrition_us 		C on B.GTIN_CD 		= C.GTIN_CD		/*        52 rows matched     231 Nutrition information of item	    */
-join gtin_13.pkg_type 			G on B.PKG_TYPE_CD  = G.pkg_type_cd  /*        0 rows matched      42 Package description of item       */
+join gtin_13.gs1_prefix  H on H.PREFIX_CD = substring(B.GTIN_CD,1,3)/*        52 rows matched    1000 GTIN Prefix decode to issueing country */   
+join gtin_13.pkg_type 			G on B.PKG_TYPE_CD  = G.pkg_type_cd;  /*       0 rows matched      42 Package description of item       */
+
+
+
 
 /* extract example rows from each table */
 
@@ -217,6 +222,7 @@ order by GLN_CD ;
 
 
 /* Overall summary table */
+/* 9 seconds */
 select Status, count(*) from (
 	select  GLN_CD, GLN_NM,
 			case 
@@ -229,4 +235,57 @@ select Status, count(*) from (
  group by Status
  order by count(*) desc;
  
- /* end Randy Lisbona exporatory queries */
+ /* extract to create frequency plot of numbers in each position in GTIN_CD */
+ /* 8.7 seconds */
+ select 
+ substring(GTIN_CD,1,1) as pos1,
+ substring(GTIN_CD,2,1) as pos2,
+ substring(GTIN_CD,3,1) as pos3,
+ substring(GTIN_CD,4,1) as pos4,
+ substring(GTIN_CD,5,1) as pos5,
+ substring(GTIN_CD,6,1) as pos6,
+ substring(GTIN_CD,7,1) as pos7,
+ substring(GTIN_CD,8,1) as pos8,
+ substring(GTIN_CD,9,1) as pos9,
+ substring(GTIN_CD,10,1) as pos10,
+ substring(GTIN_CD,11,1) as pos11,
+ substring(GTIN_CD,12,1) as pos12,
+ substring(GTIN_CD,13,1) as pos13,
+ substring(GTIN_CD,14,1) as pos14
+ from gtin_13.gtin;
+ 
+/* find GLN_NM that have the GS1 office instead of a name */ 
+/* 2 seconds */
+select distinct GLN_CD, GLN_NM from gtin_13.gs1_gcp where GLN_NM like '%GS1%';
+ 
+select * from gtin_13.gs1_prefix;
+ 
+/* extract data to show percent of records by each GS1 GCP office */ 
+/* 6.7 seconds to run */
+select freq, freq/(select count(*) from gtin_13.gtin) as pct_of_total, Prefix_NM, Country_ISO_CD from ( 
+select count(*) as freq,  B.PREFIX_NM as Prefix_NM, B.COUNTRY_ISO_CD as Country_ISO_CD from gtin_13.gtin A left join gtin_13.gs1_prefix  B on B.PREFIX_CD = substring(A.GTIN_CD,1,3) 
+group by B.PREFIX_NM) as step1
+order by freq desc;
+
+
+select A.gtin_cd,  B.PREFIX_NM as Prefix_NM, B.COUNTRY_ISO_CD as Country_ISO_CD from gtin_13.gtin A left join gtin_13.gs1_prefix  B on B.PREFIX_CD = substring(A.GTIN_CD,1,3) 
+where B.PREFIX_NM like 'GS1 US%';
+
+/* find top 10 brands with the most records, exclude the brands that show the GS1 office rather than the brand and the other garbage names*/
+/* 54 seconds to run */
+select count(*), GLN_NM from gtin_13.gs1_gcp group by GLN_NM 
+having not(GLN_NM like 'GS1%' or GLN_NM like '' or GLN_NM like 'RETURNCODE%' or GLN_NM like 'Non-actief%')
+order by count(*) desc
+limit 10;
+
+/* 35 seconds to run */
+select count(*) as count_GTIN_by_GLN , GLN_CD , GLN_NM from gtin_13.gs1_gcp group by GLN_CD, GLN_NM order by count(*) desc;
+
+drop index idx_GLN_CD on gtin_13.gs1_gcp;
+
+/* 11 seconds to create index */
+create index idx_GLN_CD on gtin_13.gs1_gcp (GLN_CD,GLN_NM);
+
+/* 3 seconds to run with the new secondary index */
+select count(*) as count_GTIN_by_GLN , GLN_CD , GLN_NM from gtin_13.gs1_gcp group by GLN_CD, GLN_NM having GLN_NM not like 'GS1%' order by count(*) desc;
+
